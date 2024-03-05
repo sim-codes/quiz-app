@@ -4,7 +4,6 @@ from .views import (StudentRegistrationView,
                     TeacherRegistrationView,
                     LogoutView,
                     MyTokenObtainPairView,
-                    ChangePasswordView,
                     )
 
 
@@ -16,5 +15,4 @@ urlpatterns = [
     path('login/', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('login/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('logout/blacklist/', LogoutView.as_view(), name='token_blacklist'),
-    path('change-password/<int:pk>', ChangePasswordView.as_view(), name='change_password')
 ]

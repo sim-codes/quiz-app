@@ -3,8 +3,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializers import (StudentResgistationSerializer, 
                           TeacherResgistationSerializer,
-                          MyTokenObtainPairSerializer,
-                          ChangePasswordSerializer)
+                          MyTokenObtainPairSerializer,)
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenBlacklistView
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -43,9 +42,3 @@ class LogoutView(TokenBlacklistView):
 class MyTokenObtainPairView(TokenObtainPairView):
     permission_classes = [AllowAny]
     serializer_class = MyTokenObtainPairSerializer
-
-
-class ChangePasswordView(generics.UpdateAPIView):
-    queryset = User.objects.all()
-    permission_classes = (IsAuthenticated,)
-    serializer_class = ChangePasswordSerializer

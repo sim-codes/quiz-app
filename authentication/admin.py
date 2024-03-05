@@ -13,7 +13,7 @@ class UserAdminConfig(UserAdmin):
     list_display = ('email', 'username', 'is_active', 'is_teacher')
     fieldsets = (
         ('Authentication Details', {'fields': ('email', 'username', 'is_teacher')}),
-        ('Personal Details', {'fields': ('first_name', 'last_name')}),
+        ('Personal Details', {'fields': ('first_name', 'last_name', 'date_of_birth')}),
     )
     add_fieldsets = (
         (None, {

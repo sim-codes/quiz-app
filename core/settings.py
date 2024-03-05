@@ -28,6 +28,8 @@ INSTALLED_APPS = [
 
     # local apps
     'authentication.apps.AuthenticationConfig',
+    'question.apps.QuestionConfig',
+    'quiz.apps.QuizConfig',
 
     # 3rd party apps
     'rest_framework',
@@ -65,6 +67,9 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
 
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
