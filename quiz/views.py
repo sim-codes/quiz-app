@@ -44,7 +44,7 @@ class QuizListCreateView(ListCreateAPIView):
         return Response(data)
 
 class TakeQuizView(APIView):
-    queryset = Quiz.objects.all()
+    # queryset = Quiz.objects.all()
     serializer_class = QuizSerializer
 
     def get_queryset(self):
