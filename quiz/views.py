@@ -9,12 +9,18 @@ from question.models import Course, Question
 
 class QuizView(RetrieveUpdateDestroyAPIView):
     serializer_class = QuizSerializer
-    queryset = Quiz.objects.all()
+    # queryset = Quiz.objects.all()
+
+    def get_queryset(self):
+        return Quiz.objects.filter(tutor=self.request.user)
 
 
 class QuizListCreateView(ListCreateAPIView):
     serializer_class = QuizSerializer
-    queryset = Quiz.objects.all()
+    # queryset = Quiz.objects.all()
+
+    def get_queryset(self):
+        return Quiz.objects.filter(tutor=self.request.user)
 
     def perform_create(self, serializer):
         serializer.save(tutor=self.request.user)
@@ -40,6 +46,9 @@ class QuizListCreateView(ListCreateAPIView):
 class TakeQuizView(APIView):
     queryset = Quiz.objects.all()
     serializer_class = QuizSerializer
+
+    def get_queryset(self):
+        return Quiz.objects.filter(tutor=self.request.user)
 
     def get(self, request, pk):
         due_questions = self.queryset.filter(due_date__lte=timezone.now())
