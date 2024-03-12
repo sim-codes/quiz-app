@@ -6,13 +6,17 @@ from django.utils import timezone
 from .models import Quiz, QuizResult
 from .serializers import QuizSerializer, QuizResultSerializer
 from question.models import Course, Question
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, BasePermission
+from question.views import IsTeacher
 
 class QuizView(RetrieveUpdateDestroyAPIView):
     serializer_class = QuizSerializer
-    # queryset = Quiz.objects.all()
+    queryset = Quiz.objects.all()
+    permission_classes = (IsAuthenticatedOrReadOnly, IsTeacher,)
 
-    def get_queryset(self):
-        return Quiz.objects.filter(tutor=self.request.user)
+
+    # def get_queryset(self):
+    #     return Quiz.objects.filter(tutor=self.request.user)
 
 
 class QuizListCreateView(ListCreateAPIView):

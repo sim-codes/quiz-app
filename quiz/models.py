@@ -3,10 +3,7 @@ from django.conf import settings
 from question.models import Course
 
 
-class QuizManager(models.Manager):
-    def get_queryset(self):
-        return super().get_queryset().filter(status='Published')
-    
+class QuizManager(models.Manager):    
     def active(self):
         return self.get_queryset().filter(is_active=True)
     
@@ -34,7 +31,6 @@ class Quiz(models.Model):
     is_active = models.BooleanField(default=False)
     
     objects = models.Manager()
-    QuizManager = QuizManager()
 
     class Meta:
         verbose_name_plural = 'quizzes'
